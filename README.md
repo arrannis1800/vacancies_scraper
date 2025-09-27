@@ -4,6 +4,7 @@ Scrapper for vacancies in telegram bots
 
 
 ## How to setup 
+Setup telegram channels, key and stopwords to filter messages in config.txt
 
 Setup vitrual enviroment and install packages from requirements.txt
 
