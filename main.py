@@ -57,15 +57,15 @@ class Parser:
                     case self.ParseType.channel:
                         self.channels.append(line)
                     case self.ParseType.keyword:
-                        self.keywords.append(line)
-
+                        self.keywords.append(line.lower())
                     case self.ParseType.stopword:
-                        self.stopwords.append(line)
+                        self.stopwords.append(line.lower())
                     case _:
                         print("error: ", line)
    
 
     def filter_message(self, text: str) -> bool:
+        text = text.lower()
         for stopword in self.stopwords:
             if stopword in text:
                 return False
