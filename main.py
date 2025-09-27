@@ -1,6 +1,5 @@
 import os
 from enum import Enum
-from aiogram import Bot
 from telethon import TelegramClient
 import asyncio
 from datetime import datetime, timedelta
