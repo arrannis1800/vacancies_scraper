@@ -1,1 +1,15 @@
 # vacancies_scrapper
+
+Scrapper for vacancies in telegram bots
+
+
+## How to setup 
+
+Setup vitrual enviroment and install packages from requirements.txt
+
+You need to provide few enviroment variables
+API_ID and API_HASH. They needed to scrap data from channels. And you can get them https://my.telegram.org/apps
+
+And optional TOKEN and USER_ID to get messages into your bot
+Token you can get via @BotFather
+user_id is your @nickname 

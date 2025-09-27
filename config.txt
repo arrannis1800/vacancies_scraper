@@ -1,0 +1,38 @@
+channels
+	https://t.me/razrabsjobs
+	https://t.me/weplaymakers
+	https://t.me/DevZoneGD
+	https://t.me/gdjobs
+	https://t.me/young_gamedev
+	https://t.me/GameDev_and_Tech_vacancy
+	https://t.me/FreelancerDesk
+	https://t.me/opento_relocate
+	https://t.me/ue_pub
+	https://t.me/DevJobs_Resume
+	https://t.me/devjobs
+	https://t.me/forgamedev
+	https://t.me/ingamejob_dev
+	https://t.me/uejobs
+	https://t.me/Gamedevjobs
+	https://t.me/gamedevjob
+	https://t.me/rabota_v_gamedeve
+keywords
+	c++
+	с++
+	программист
+	developer
+	ue
+	unreal
+	engine
+stopwords
+	unity
+	c#
+	с#
+	csharp
+	animator
+	lead
+	sound
+	саунд
+	аниматор
+	художник
+	artist
