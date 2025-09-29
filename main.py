@@ -3,7 +3,7 @@ from enum import Enum
 from telethon import TelegramClient
 import asyncio
 from datetime import datetime, timedelta
-
+from src.OutputMessage import OutputMessage
 
 class Parser:
     class ParseType(Enum):
@@ -11,19 +11,6 @@ class Parser:
         keyword = "keywords"
         stopword = "stopwords"
         none = ""
-
-    class OutputMessage:
-        text = ""
-        link = ""
-        max_descr_size = 100
-
-        def __init__(self, text, link):
-            self.text = text.strip()
-            self.link = link
-
-        def __str__(self):
-            return f"Desription: {self.text[:self.max_descr_size]}\nLink: {self.link}\n\n"
-
 
     def __init__(self):
         self.channels = []
@@ -104,7 +91,7 @@ class Parser:
 
     async def parse_channel(self, scrapper, channel: str):  
         async for message in scrapper.iter_messages(channel, offset_date=self.cutoff, reverse=True):
-            self.output_messages.append(self.OutputMessage(message.text, channel + "/" + str(message.id)))
+            self.output_messages.append(OutputMessage(message.text, channel + "/" + str(message.id)))
         
             
 
