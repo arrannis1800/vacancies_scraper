@@ -59,6 +59,10 @@ class Parser:
             channels_to_fetch = []
             for line in data:
                 line = line.strip()
+                if(line.startswith(("#", "-"))):
+                    # it is comment or disabled line
+                    continue
+
                 if(self.parse_category(line)):
                     continue
 
