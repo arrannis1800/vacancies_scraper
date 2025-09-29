@@ -8,7 +8,6 @@ channels
 	https://t.me/FreelancerDesk
 	https://t.me/opento_relocate
 	https://t.me/ue_pub
-	https://t.me/DevJobs_Resume
 	https://t.me/devjobs
 	https://t.me/forgamedev
 	https://t.me/ingamejob_dev

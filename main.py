@@ -1,9 +1,10 @@
 import os
 from enum import Enum
-from telethon import TelegramClient
 import asyncio
-from datetime import datetime, timedelta
-from src.OutputMessage import OutputMessage
+from datetime import datetime, timedelta, timezone
+from telethon import TelegramClient
+# from src.OutputMessage import OutputMessage
+from src.TelegramScraper import TgScraper
 
 class Parser:
     class ParseType(Enum):
@@ -18,13 +19,14 @@ class Parser:
         self.stopwords = []
         self.output_messages = []
         self.parseType = self.ParseType.none
-        self.cutoff = datetime.now() - timedelta(days=1, hours=1) 
+        self.cutoff = datetime.now(timezone.utc) - timedelta(days=1, hours=1)
         
         self.parse_config()
         
         # scrap all data
         if(len(self.channels) > 0):
-            asyncio.run(self.parse_channels())
+            scraper = TgScraper(self.channels, self.cutoff)
+            self.output_messages.extend(scraper.get_vacancies())
         
         # filter only nessesary data
         self.filter_messages()
@@ -85,22 +87,7 @@ class Parser:
             if(check_keywords(text)):
                 filtered.append(message)
 
-        self.output_messages = filtered
-            
-
-
-    async def parse_channel(self, scrapper, channel: str):  
-        async for message in scrapper.iter_messages(channel, offset_date=self.cutoff, reverse=True):
-            self.output_messages.append(OutputMessage(message.text, channel + "/" + str(message.id)))
-        
-            
-
-    async def parse_channels(self):
-        scrapper = await TelegramClient("scrapper_session", os.getenv("API_ID"), os.getenv("API_HASH")) .start()
-        async with scrapper:
-            tasks = [self.parse_channel(scrapper, channel) for channel in self.channels]
-            await asyncio.gather(*tasks)
-        
+        self.output_messages = filtered 
 
     async def send_messages_to_bot(self):
         async def send_message(message):
