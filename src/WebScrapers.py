@@ -1,7 +1,5 @@
-import requests as r
 from selenium import webdriver as wd
 from selenium.webdriver.common.by import By
-from bs4 import BeautifulSoup as bs
 from datetime import datetime, timedelta, timezone
 from src.OutputMessage import OutputMessage
 
