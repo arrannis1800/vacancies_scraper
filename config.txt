@@ -15,6 +15,8 @@ channels
 	https://t.me/Gamedevjobs
 	https://t.me/gamedevjob
 	https://t.me/rabota_v_gamedeve
+websites
+	https://hitmarker.net/jobs
 keywords
 	c++
 	с++
@@ -39,3 +41,6 @@ stopwords
 	#resume
 	vfx
 	геймдизайнер
+	video editor
+	premiere pro
+	after effects

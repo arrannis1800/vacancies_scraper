@@ -5,16 +5,19 @@ from datetime import datetime, timedelta, timezone
 from telethon import TelegramClient
 # from src.OutputMessage import OutputMessage
 from src.TelegramScraper import TgScraper
+from src.WebScrapers import *
 
 class Parser:
     class ParseType(Enum):
         channel = "channels"
+        websites = "websites"
         keyword = "keywords"
         stopword = "stopwords"
         none = ""
 
     def __init__(self):
         self.channels = []
+        self.websites = []
         self.keywords = []
         self.stopwords = []
         self.output_messages = []
@@ -27,6 +30,13 @@ class Parser:
         if(len(self.channels) > 0):
             scraper = TgScraper(self.channels, self.cutoff)
             self.output_messages.extend(scraper.get_vacancies())
+        if(len(self.websites) > 0):
+            scraper_mapping = {
+                    "https://hitmarker.net/jobs": HitMakerScraper,
+                    }
+            for website in self.websites:
+                scraper = scraper_mapping[website](self.cutoff)
+                self.output_messages.extend(scraper.get_vacancies())
         
         # filter only nessesary data
         self.filter_messages()
@@ -62,6 +72,8 @@ class Parser:
                         self.keywords.append(line.lower())
                     case self.ParseType.stopword:
                         self.stopwords.append(line.lower())
+                    case self.ParseType.websites:
+                        self.websites.append(line)
                     case _:
                         print("error: ", line)
    
