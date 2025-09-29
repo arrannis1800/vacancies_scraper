@@ -37,3 +37,6 @@ stopwords
 	художник
 	artist
 	#резюме
+	#resume
+	vfx
+	геймдизайнер

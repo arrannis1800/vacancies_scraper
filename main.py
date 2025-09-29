@@ -34,8 +34,17 @@ class Parser:
         self.cutoff = datetime.now() - timedelta(days=1, hours=1) 
         
         self.parse_config()
-        asyncio.run(self.parse_channels())
-        self.send_messages()
+        
+        # scrap all data
+        if(len(self.channels) > 0):
+            asyncio.run(self.parse_channels())
+        
+        # filter only nessesary data
+        self.filter_messages()
+
+        # send messages to stdout and bot
+        if(len(self.output_messages) > 0):
+            self.send_messages()
     
     def parse_category(self, line: str) -> bool:
         for s in self.ParseType:
@@ -64,23 +73,34 @@ class Parser:
                         print("error: ", line)
    
 
-    def filter_message(self, text: str) -> bool:
-        text = text.lower()
-        for stopword in self.stopwords:
-            if stopword in text:
-                return False
+    def filter_messages(self):
+        def check_stopwords(text: str) -> bool:
+            for stopword in self.stopwords:
+                if stopword in text:
+                    return True
+            return False
+        
+        def check_keywords(text: str) -> bool:
+            for keyword in self.keywords:
+                if keyword in text:
+                    return True
+            return False
+        
+        filtered = []
+        for message in self.output_messages:
+            text = message.text.lower()
+            if(check_stopwords(text)):
+                continue
+            if(check_keywords(text)):
+                filtered.append(message)
 
-        for keyword in self.keywords:
-            if keyword in text:
-                return True
+        self.output_messages = filtered
             
-        return False
 
 
     async def parse_channel(self, scrapper, channel: str):  
         async for message in scrapper.iter_messages(channel, offset_date=self.cutoff, reverse=True):
-            if self.filter_message(message.text):
-                self.output_messages.append(self.OutputMessage(message.text, channel + "/" + str(message.id)))
+            self.output_messages.append(self.OutputMessage(message.text, channel + "/" + str(message.id)))
         
             
 
