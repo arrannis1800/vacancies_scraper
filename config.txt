@@ -1,6 +1,6 @@
 channels
 	https://t.me/razrabsjobs
-	https://t.me/weplaymakers
+	https://t.me/igrodelio
 	https://t.me/DevZoneGD
 	https://t.me/gdjobs
 	https://t.me/young_gamedev
