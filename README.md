@@ -1,7 +1,8 @@
-# vacancies_scrapper
+# vacancies_scraper
 
 Scrapper for vacancies in telegram bots
 
+Feel free to open PR or issues to improve functionality 
 
 ## How to setup 
 Setup telegram channels, key and stopwords to filter messages in config.txt
