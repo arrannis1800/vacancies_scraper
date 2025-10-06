@@ -1,14 +1,17 @@
-class OutputMessage:
-    text = ""
-    link = ""
-    max_descr_size = 100
+import re
 
-    def __init__(self, text, link):
-        self.text = text.strip()
+
+class OutputMessage:
+    def __init__(self, text, link, max_descr_size=100):
+        self.text = re.sub("\n+", "\n", text.strip())
         self.link = link
+        self.max_descr_size = max_descr_size
+
+    def format_str(self, max_descr_size: int) -> str:
+        return f"Desription: {self.text[:max_descr_size]}\n" \
+               f"Link: {self.link}\n\n"
 
     def __str__(self):
-        return f"Desription: {self.text[:self.max_descr_size]}\nLink: {self.link}\n\n"
-
+        return self.format_str(self.max_descr_size)
 
 

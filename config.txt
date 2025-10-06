@@ -1,3 +1,19 @@
+-- text after "--" will be skipped for comment
+-- you can easily disable line by adding "-" before text
+
+params
+--	send messages can be:
+--		single  - if you want to get message for each vacancy
+-- 		grouped - if you want to pack vacancies in few messages
+-	send_messages=single
+	send_messages=grouped
+	max_output_description_size=200
+-- 	you can specify which period from now you want to scrap in format 1y2mo3w4d5h (you must to write number and one of the period type)
+	cutoff_time=25h2d	
+--	render_pages can be:
+--		true 	- if you can render js code in chromium on your machine 
+-- 		false	- if you can't render js code on your machine (website will be skipped, if this flag needed to be on)
+	render_pages=True
 channels
 	https://t.me/razrabsjobs
 	https://t.me/igrodelio
