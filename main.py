@@ -51,10 +51,11 @@ class Parser:
             self.send_messages()
     
     def show_config_data(self):
-        print(f"INFO: Data will scraped since {self.cutoff.strftime("%Y-%m-%d %H:%M:%S %Z")}")
+        formatted_date = self.cutoff.strftime("%Y-%m-%d %H:%M:%S %Z")
+        print(f"INFO: Data will be scraped since {formatted_date}")
         print(f"INFO: Vacancy desription size is {self.max_desc_size}")
-        print(f"INFO: Send messages {"" if self.group_messages else "un"}grouped")
-        print(f"INFO: Render pages {"on" if self.use_render else "off"}")
+        print(f"INFO: Send messages {'' if self.group_messages else 'un'}grouped")
+        print(f"INFO: Render pages {'on' if self.use_render else 'off'}")
 
     def parse_category(self, line: str) -> bool:
         for s in self.ParseType:
